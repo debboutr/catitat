@@ -1,0 +1,15 @@
+from django.http import HttpResponse
+from django.views.generic import TemplateView
+from django.core.serializers import serialize
+
+from .models import Rivers
+from catitat.settings import KEEP
+
+
+class HomePageView(TemplateView):
+    template_name = 'index.html'
+
+
+def river_datasets(request):
+    rivers = serialize('geojson', Rivers.objects.filter(comid__in=KEEP))
+    return HttpResponse(rivers, content_type='json')

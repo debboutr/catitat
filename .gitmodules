@@ -1,0 +1,6 @@
+[submodule "static/leaflet-ajax"]
+	path = static/leaflet-ajax
+	url = git@github.com:calvinmetcalf/leaflet-ajax.git
+[submodule "static/leaflet-groupedlayercontrol"]
+	path = static/leaflet-groupedlayercontrol
+	url = git@github.com:ismyrnow/leaflet-groupedlayercontrol.git

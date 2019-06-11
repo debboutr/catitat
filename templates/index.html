@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+  {% load static %}
+  {% load leaflet_tags %}
+  <head>
+    {% leaflet_js %}
+    {% leaflet_css %}
+    <title>catitat.dev</title>
+    <style type="text/css">
+      #gis {
+        width: 80%;
+        height: 474px;
+      }
+    </style>
+    <link rel="stylesheet" href="{% static 'leaflet-groupedlayercontrol/src/leaflet.groupedlayercontrol.css' %}">
+    {# <link rel="stylesheet" href="{% static 'leaflet-routing-machine-3.2.12/dist/leaflet-routing-machine.css' %}"> #}}
+    <script type="text/javascript" src="{% static 'leaflet-ajax/dist/leaflet.ajax.js' %}"></script>
+    <script type="text/javascript" src="{% static 'leaflet-groupedlayercontrol/src/leaflet.groupedlayercontrol.js' %}"></script>
+    {# <script type="text/javascript" src="{% static 'leaflet-routing-machine-3.2.12/dist/leaflet-routing-machine.js' %}"></script> #}
+    
+  </head>
+  <body>
+    <h1>catitat.dev</h1>
+    <h3>¡geodjango!</h3>
+    <br>
+    <script type='text/javascript'>
+      function our_layers(map, options) {
+        var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
+
+        var points = new L.GeoJSON.AJAX("{% url 'rivers' %}",{
+          pointToLayer: function(feature, latlng) {
+            return new L.CircleMarker(latlng, {radius: 2, fillOpacity: 0.85});
+          },
+          onEachFeature: function(feature,layer){
+            layer.bindPopup(feature.properties.comid.toString())
+          }
+        });
+
+        points.addTo(map);
+        
+        var baseLayers = {
+          "OSM": osm
+        }
+
+        var groupedOverlays = {
+          "layers": {
+            "centroids": points
+          }
+        };
+
+        L.control.groupedLayers(baseLayers, groupedOverlays).addTo(map);
+
+
+      }
+    </script>
+    {% leaflet_map "gis" callback="window.our_layers" %}
+  </body>
+</html>
