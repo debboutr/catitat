@@ -13,3 +13,6 @@ class HomePageView(TemplateView):
 def river_datasets(request):
     rivers = serialize('geojson', Rivers.objects.filter(streamorde__gt=4))
     return HttpResponse(rivers, content_type='json')
+
+class PlaygroundView(TemplateView):
+    template_name = 'base.html'
