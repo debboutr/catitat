@@ -1,28 +1,26 @@
-body {
-    display: grid;
-    grid-template-columns: 75% 25%;
-    grid-template-rows: 10vw 30vw 10vw;
-    grid-gap: 1em;
-  }
+body{
+  background-color: grey;
   
-  header,
-  footer {
-    grid-column: 1 / span 2;
-  }
-  
-  /* Demo Specific Styles */
-  body {
-    margin: 0 auto;
-    max-width: 56em;
-    padding: 1em 0;
-  }
-  
-  header,
-  main,
-  aside,
-  footer {
-    background: #eaeaea;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 20vw 1fr;
+  margin: 0;
+  grid-gap: 15px;
+}
+
+
+.sidenav {
+  width: 20vw;
+  height: 100vh;
+  position: fixed;
+  background-color: #394263;
+}
+
+.main {
+  grid-column-start: 2;
+  background-color: orange;
+  /* overflow-y: auto; */
+  height: 100%;
+}
