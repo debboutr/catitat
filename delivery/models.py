@@ -16,3 +16,10 @@ class Rivers(models.Model):
 
     class Meta:
         verbose_name_plural = 'Rivers'
+
+class States(models.Model):
+    code = models.CharField(max_length=2)
+    geom = models.MultiPolygonField(srid=4326)
+
+    class Meta:
+        verbose_name_plural = 'States'

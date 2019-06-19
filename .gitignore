@@ -4,3 +4,6 @@ __pycache__/
 *.class
 catitat.code-workspace
 .vscode/
+delivery/data/public_tables/ 
+delivery/data/raw_states/
+delivery/data/flow*
